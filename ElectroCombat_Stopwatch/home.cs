@@ -14,6 +14,8 @@ namespace ElectroCombat_Stopwatch
     {
         System.Timers.Timer timer;
         int h, m, s, ms;
+        bool status = false;
+        
 
         private void home_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -24,7 +26,19 @@ namespace ElectroCombat_Stopwatch
         {
             if (e.KeyCode == Keys.Space)
             {
-                timer.Start();
+                if(status == false)
+                {
+                    timer.Start();
+                    this.BackColor = System.Drawing.Color.Green;
+                    status = true;
+                }
+                else if(status == true)
+                {
+                    timer.Stop();
+                    this.BackColor = System.Drawing.Color.Red;
+                    status = false;
+                }
+                
             }
         }
 
