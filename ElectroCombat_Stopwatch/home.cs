@@ -28,18 +28,40 @@ namespace ElectroCombat_Stopwatch
             {
                 if(status == false)
                 {
+                    watch_lb.Show();
                     timer.Start();
                     this.BackColor = System.Drawing.Color.Green;
+                    team_one_state.Hide();
+                    team_two_state.Hide();
                     status = true;
                 }
                 else if(status == true)
                 {
+                    watch_lb.Show();
                     timer.Stop();
                     this.BackColor = System.Drawing.Color.Red;
+                    team_one_state.Hide();
+                    team_two_state.Hide();
                     status = false;
                 }
                 
             }
+
+            else if (e.KeyCode == Keys.Q)
+            {
+                team_one_state.Show();
+                watch_lb.BackColor = System.Drawing.Color.Transparent;
+            }
+            else if (e.KeyCode == Keys.P)
+            {
+                team_two_state.Show();
+                watch_lb.BackColor = System.Drawing.Color.Transparent;
+            }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         private void home_Load(object sender, EventArgs e)
@@ -47,6 +69,9 @@ namespace ElectroCombat_Stopwatch
             timer = new System.Timers.Timer();
             timer.Interval = 1;
             timer.Elapsed += OnTimeEvent;
+            team_one_state.Hide();
+            team_two_state.Hide();
+            watch_lb.Hide();
         }
 
         private void OnTimeEvent(object sender, EventArgs e)
