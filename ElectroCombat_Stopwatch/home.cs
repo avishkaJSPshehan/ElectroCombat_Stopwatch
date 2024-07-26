@@ -30,8 +30,9 @@ namespace ElectroCombat_Stopwatch
             {
                 coun_down_panel.Show();
                 coundown.Start();
-
-                if (status == false)
+                
+                /*
+                if (status == false && coundown_s > 2)
                 {
                     watch_lb.Show();
                     timer.Start();
@@ -49,12 +50,13 @@ namespace ElectroCombat_Stopwatch
                     team_two_panel.Hide();
                     status = false;
                 }
+                */
                 
             }
 
             else if (e.KeyCode == Keys.Q)
             {
-                
+                coun_down_panel.Hide();
                 team_one_panel.Show();
                 watch_lb.BackColor = System.Drawing.Color.Transparent;
             }
@@ -139,9 +141,33 @@ namespace ElectroCombat_Stopwatch
                 {
                     coundown.Stop();
                     coun_down_panel.Hide();
+
+                    if (status == false)
+                    {
+                        watch_lb.Show();
+                        timer.Start();
+                        this.BackColor = System.Drawing.Color.Green;
+                        team_one_panel.Hide();
+                        team_two_panel.Hide();
+                        status = true;
+                    }
+                    else if (status == true)
+                    {
+                        watch_lb.Show();
+                        timer.Stop();
+                        this.BackColor = System.Drawing.Color.Orange;
+                        team_one_panel.Hide();
+                        team_two_panel.Hide();
+                        status = false;
+                    }
                 }
 
+                
+
             }));
+
+
+            
         }
 
         private void OnTimeEvent(object sender, EventArgs e)
