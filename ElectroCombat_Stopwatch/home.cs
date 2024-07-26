@@ -13,7 +13,9 @@ namespace ElectroCombat_Stopwatch
     public partial class home : Form
     {
         System.Timers.Timer timer;
+        System.Timers.Timer coundown;
         int h, m, s, ms;
+        int coundown_s, coundown_ms, coundown_m;
         bool status = false;
         
 
@@ -26,7 +28,10 @@ namespace ElectroCombat_Stopwatch
         {
             if (e.KeyCode == Keys.Space)
             {
-                if(status == false)
+                coun_down_panel.Show();
+                coundown.Start();
+
+                if (status == false)
                 {
                     watch_lb.Show();
                     timer.Start();
@@ -49,6 +54,7 @@ namespace ElectroCombat_Stopwatch
 
             else if (e.KeyCode == Keys.Q)
             {
+                
                 team_one_panel.Show();
                 watch_lb.BackColor = System.Drawing.Color.Transparent;
             }
@@ -96,14 +102,46 @@ namespace ElectroCombat_Stopwatch
 
         }
 
+        private void panel1_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
         private void home_Load(object sender, EventArgs e)
         {
             timer = new System.Timers.Timer();
             timer.Interval = 1;
             timer.Elapsed += OnTimeEvent;
+
+            coundown = new System.Timers.Timer();
+            coundown.Interval = 1;
+            coundown.Elapsed += OnTimeEvent_coundown;
+
             team_one_panel.Hide();
             team_two_panel.Hide();
             watch_lb.Hide();
+        }
+
+        private void OnTimeEvent_coundown(object sender, EventArgs e)
+        {
+            Invoke(new Action(() =>
+            {
+                coundown_ms += 1;
+                if (coundown_ms == 63)
+                {
+                    coundown_ms = 0;
+                    coundown_s += 1;
+                }
+
+                coun_down_lb.Text = string.Format("{0}", coundown_s.ToString().ToString().PadLeft(2, '0'));
+
+                if (coundown_s == 4)
+                {
+                    coundown.Stop();
+                    coun_down_panel.Hide();
+                }
+
+            }));
         }
 
         private void OnTimeEvent(object sender, EventArgs e)
