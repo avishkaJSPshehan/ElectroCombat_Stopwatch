@@ -33,8 +33,11 @@
             this.team_two_panel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.coun_down_panel = new System.Windows.Forms.Panel();
+            this.coun_down_lb = new System.Windows.Forms.Label();
             this.team_one_panel.SuspendLayout();
             this.team_two_panel.SuspendLayout();
+            this.coun_down_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // watch_lb
@@ -53,6 +56,7 @@
             // team_one_panel
             // 
             this.team_one_panel.BackColor = System.Drawing.Color.GreenYellow;
+            this.team_one_panel.Controls.Add(this.coun_down_panel);
             this.team_one_panel.Controls.Add(this.label1);
             this.team_one_panel.Location = new System.Drawing.Point(1, 1);
             this.team_one_panel.Name = "team_one_panel";
@@ -93,14 +97,34 @@
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
+            // coun_down_panel
+            // 
+            this.coun_down_panel.BackColor = System.Drawing.Color.LightGreen;
+            this.coun_down_panel.Controls.Add(this.coun_down_lb);
+            this.coun_down_panel.Location = new System.Drawing.Point(255, 290);
+            this.coun_down_panel.Name = "coun_down_panel";
+            this.coun_down_panel.Size = new System.Drawing.Size(520, 376);
+            this.coun_down_panel.TabIndex = 1;
+            this.coun_down_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint_1);
+            // 
+            // coun_down_lb
+            // 
+            this.coun_down_lb.AutoSize = true;
+            this.coun_down_lb.BackColor = System.Drawing.Color.Transparent;
+            this.coun_down_lb.Font = new System.Drawing.Font("Rockwell", 150F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.coun_down_lb.Location = new System.Drawing.Point(121, 26);
+            this.coun_down_lb.Name = "coun_down_lb";
+            this.coun_down_lb.Size = new System.Drawing.Size(0, 304);
+            this.coun_down_lb.TabIndex = 0;
+            // 
             // home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1920, 1102);
-            this.Controls.Add(this.team_one_panel);
             this.Controls.Add(this.team_two_panel);
+            this.Controls.Add(this.team_one_panel);
             this.Controls.Add(this.watch_lb);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "home";
@@ -114,6 +138,8 @@
             this.team_one_panel.PerformLayout();
             this.team_two_panel.ResumeLayout(false);
             this.team_two_panel.PerformLayout();
+            this.coun_down_panel.ResumeLayout(false);
+            this.coun_down_panel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,6 +152,8 @@
         private System.Windows.Forms.Panel team_two_panel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel coun_down_panel;
+        private System.Windows.Forms.Label coun_down_lb;
     }
 }
 
