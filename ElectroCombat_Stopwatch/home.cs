@@ -31,7 +31,7 @@ namespace ElectroCombat_Stopwatch
                     watch_lb.Show();
                     timer.Start();
                     this.BackColor = System.Drawing.Color.Green;
-                    team_one_state.Hide();
+                    team_one_ready_pic.Hide();
                     team_two_state.Hide();
                     status = true;
                 }
@@ -40,7 +40,7 @@ namespace ElectroCombat_Stopwatch
                     watch_lb.Show();
                     timer.Stop();
                     this.BackColor = System.Drawing.Color.Red;
-                    team_one_state.Hide();
+                    team_one_ready_pic.Hide();
                     team_two_state.Hide();
                     status = false;
                 }
@@ -49,7 +49,9 @@ namespace ElectroCombat_Stopwatch
 
             else if (e.KeyCode == Keys.Q)
             {
-                team_one_state.Show();
+                team_one_ready_pic.Show();
+                pictureBox1.Image = Image.FromFile(@"D:\Programming Projects\ElectroCombat_Stopwatch\Assets\vs_animation.gif");
+                team_one_ready_pic.BackColor = Color.Transparent;
                 watch_lb.BackColor = System.Drawing.Color.Transparent;
             }
             else if (e.KeyCode == Keys.P)
@@ -64,12 +66,22 @@ namespace ElectroCombat_Stopwatch
 
         }
 
+        private void team_one_state_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void team_one_ready_pic_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void home_Load(object sender, EventArgs e)
         {
             timer = new System.Timers.Timer();
             timer.Interval = 1;
             timer.Elapsed += OnTimeEvent;
-            team_one_state.Hide();
+            team_one_ready_pic.Hide();
             team_two_state.Hide();
             watch_lb.Hide();
         }
