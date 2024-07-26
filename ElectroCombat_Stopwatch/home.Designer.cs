@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.watch_lb = new System.Windows.Forms.Label();
-            this.team_two_state = new System.Windows.Forms.Label();
-            this.team_one_ready_pic = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.team_one_ready_pic)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.team_one_panel = new System.Windows.Forms.Panel();
+            this.team_two_panel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.team_one_panel.SuspendLayout();
+            this.team_two_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // watch_lb
@@ -42,47 +43,52 @@
             this.watch_lb.AutoSize = true;
             this.watch_lb.BackColor = System.Drawing.Color.Transparent;
             this.watch_lb.Font = new System.Drawing.Font("DS-Digital", 400.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.watch_lb.Location = new System.Drawing.Point(100, 184);
+            this.watch_lb.Location = new System.Drawing.Point(42, 184);
             this.watch_lb.Name = "watch_lb";
             this.watch_lb.Size = new System.Drawing.Size(1785, 661);
             this.watch_lb.TabIndex = 0;
             this.watch_lb.Text = "00:00";
             this.watch_lb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // team_two_state
+            // team_one_panel
             // 
-            this.team_two_state.AutoSize = true;
-            this.team_two_state.BackColor = System.Drawing.Color.Transparent;
-            this.team_two_state.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.team_two_state.Font = new System.Drawing.Font("Robus", 150F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.team_two_state.ForeColor = System.Drawing.Color.Green;
-            this.team_two_state.Location = new System.Drawing.Point(924, 89);
-            this.team_two_state.Name = "team_two_state";
-            this.team_two_state.Size = new System.Drawing.Size(593, 250);
-            this.team_two_state.TabIndex = 2;
-            this.team_two_state.Text = "Ready";
+            this.team_one_panel.BackColor = System.Drawing.Color.GreenYellow;
+            this.team_one_panel.Controls.Add(this.label1);
+            this.team_one_panel.Location = new System.Drawing.Point(1, 1);
+            this.team_one_panel.Name = "team_one_panel";
+            this.team_one_panel.Size = new System.Drawing.Size(1018, 1101);
+            this.team_one_panel.TabIndex = 1;
             // 
-            // team_one_ready_pic
+            // team_two_panel
             // 
-            this.team_one_ready_pic.BackColor = System.Drawing.Color.Transparent;
-            this.team_one_ready_pic.Image = global::ElectroCombat_Stopwatch.Properties.Resources.Ready_2;
-            this.team_one_ready_pic.Location = new System.Drawing.Point(251, 149);
-            this.team_one_ready_pic.Name = "team_one_ready_pic";
-            this.team_one_ready_pic.Size = new System.Drawing.Size(621, 228);
-            this.team_one_ready_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.team_one_ready_pic.TabIndex = 4;
-            this.team_one_ready_pic.TabStop = false;
-            this.team_one_ready_pic.Click += new System.EventHandler(this.team_one_ready_pic_Click);
+            this.team_two_panel.BackColor = System.Drawing.Color.GreenYellow;
+            this.team_two_panel.Controls.Add(this.label2);
+            this.team_two_panel.Location = new System.Drawing.Point(1019, 1);
+            this.team_two_panel.Name = "team_two_panel";
+            this.team_two_panel.Size = new System.Drawing.Size(1135, 1169);
+            this.team_two_panel.TabIndex = 2;
             // 
-            // pictureBox1
+            // label1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Location = new System.Drawing.Point(-3, -2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(2080, 1107);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Playbill", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(368, 384);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(229, 363);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Player\r\nOne\r\nReady";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Playbill", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(328, 384);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(229, 363);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Player\r\nTwo\r\nReady";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // home
             // 
@@ -90,10 +96,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1920, 1102);
-            this.Controls.Add(this.team_one_ready_pic);
-            this.Controls.Add(this.team_two_state);
+            this.Controls.Add(this.team_two_panel);
+            this.Controls.Add(this.team_one_panel);
             this.Controls.Add(this.watch_lb);
-            this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -102,8 +107,10 @@
             this.Load += new System.EventHandler(this.home_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.home_KeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.home_KeyPress);
-            ((System.ComponentModel.ISupportInitialize)(this.team_one_ready_pic)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.team_one_panel.ResumeLayout(false);
+            this.team_one_panel.PerformLayout();
+            this.team_two_panel.ResumeLayout(false);
+            this.team_two_panel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -112,9 +119,10 @@
         #endregion
 
         private System.Windows.Forms.Label watch_lb;
-        private System.Windows.Forms.Label team_two_state;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox team_one_ready_pic;
+        private System.Windows.Forms.Panel team_one_panel;
+        private System.Windows.Forms.Panel team_two_panel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
