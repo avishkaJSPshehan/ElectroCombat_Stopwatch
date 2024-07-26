@@ -67,7 +67,7 @@ namespace ElectroCombat_Stopwatch
                 this.BackColor = System.Drawing.Color.Green;
                 team_one_panel.Hide();
                 team_two_panel.Hide();
-                status = true;
+                status = false;
             }
         }
 
@@ -87,6 +87,11 @@ namespace ElectroCombat_Stopwatch
         }
 
         private void team_two_panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
