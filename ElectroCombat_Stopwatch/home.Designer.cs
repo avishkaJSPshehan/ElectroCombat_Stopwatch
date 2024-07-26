@@ -63,18 +63,20 @@
             // 
             this.team_two_panel.BackColor = System.Drawing.Color.GreenYellow;
             this.team_two_panel.Controls.Add(this.label2);
+            this.team_two_panel.Font = new System.Drawing.Font("Microsoft Sans Serif", 200F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.team_two_panel.Location = new System.Drawing.Point(1019, 1);
             this.team_two_panel.Name = "team_two_panel";
             this.team_two_panel.Size = new System.Drawing.Size(1135, 1169);
             this.team_two_panel.TabIndex = 2;
+            this.team_two_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.team_two_panel_Paint);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Playbill", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(368, 384);
+            this.label1.Font = new System.Drawing.Font("Playbill", 200F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(198, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(229, 363);
+            this.label1.Size = new System.Drawing.Size(624, 1014);
             this.label1.TabIndex = 0;
             this.label1.Text = "Player\r\nOne\r\nReady";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -82,10 +84,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Playbill", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(328, 384);
+            this.label2.Font = new System.Drawing.Font("Playbill", 200F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(211, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(229, 363);
+            this.label2.Size = new System.Drawing.Size(624, 1014);
             this.label2.TabIndex = 1;
             this.label2.Text = "Player\r\nTwo\r\nReady";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -96,8 +98,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1920, 1102);
-            this.Controls.Add(this.team_two_panel);
             this.Controls.Add(this.team_one_panel);
+            this.Controls.Add(this.team_two_panel);
             this.Controls.Add(this.watch_lb);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "home";
