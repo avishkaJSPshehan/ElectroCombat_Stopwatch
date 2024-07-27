@@ -1,58 +1,92 @@
+/* Import the new gaming font from Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+
+/* General styles for the body */
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
 }
 
+/* Container styles to center content */
 #container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  position: relative;
 }
 
+/* Stopwatch display styles */
 #display {
-    font-size: 30rem;
-    font-family: "LCDMono2";
-    text-shadow: 2px 2px 2px hsla(0, 0%, 0%, 0.75);
-    display: none; /* Hide display initially */
+  font-size: 30rem;
+  font-family: "LCDMono2";
+  text-shadow: 2px 2px 2px hsla(0, 0%, 0%, 0.75);
+  display: none; /* Hide display initially */
 }
 
+/* Message styles for left and right */
 .message {
-    position: absolute;
-    font-size: 3em;
-    font-weight: bold;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    display: none;
+  position: absolute;
+  font-size: 12em;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  display: none;
+  background-color: chartreuse;
+  width: 50%;
+  height: 100%;
+  padding-top: 50px;
+  box-sizing: border-box;
 }
 
+/* Left message styles */
 #left {
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    text-align: center;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
 }
 
+/* Right message styles */
 #right {
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    text-align: center;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
 }
 
+/* Countdown styles */
 #countdown {
-    font-size: 10em; /* Increased font size for visibility */
-    font-weight: bold;
-    color: rgb(252, 0, 0);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: none; /* Hidden by default */
-    z-index: 10; /* Ensure it is above other elements */
+  font-size: 30em; /* Very large font size */
+  font-weight: bold;
+  color: rgb(252, 0, 0);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none; /* Hidden by default */
+  z-index: 10; /* Ensure it is above other elements */
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+  font-family: "Russo One", sans-serif; /* Apply new gaming font */
+  animation: pulse 1s infinite;
+}
+
+/* Keyframes for the pulse animation */
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
 }
