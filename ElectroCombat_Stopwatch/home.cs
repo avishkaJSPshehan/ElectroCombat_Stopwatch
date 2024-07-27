@@ -104,6 +104,11 @@ namespace ElectroCombat_Stopwatch
 
         }
 
+        private void coun_down_lb_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void panel1_Paint_1(object sender, PaintEventArgs e)
         {
 
@@ -128,6 +133,9 @@ namespace ElectroCombat_Stopwatch
         {
             Invoke(new Action(() =>
             {
+                team_one_panel.Hide();
+                team_two_panel.Hide();
+
                 coundown_ms += 1;
                 if (coundown_ms == 63)
                 {

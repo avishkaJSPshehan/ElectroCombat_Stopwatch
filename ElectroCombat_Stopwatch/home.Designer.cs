@@ -30,8 +30,8 @@
         {
             this.watch_lb = new System.Windows.Forms.Label();
             this.team_one_panel = new System.Windows.Forms.Panel();
-            this.team_two_panel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.team_two_panel = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.coun_down_panel = new System.Windows.Forms.Panel();
             this.coun_down_lb = new System.Windows.Forms.Label();
@@ -56,23 +56,11 @@
             // team_one_panel
             // 
             this.team_one_panel.BackColor = System.Drawing.Color.GreenYellow;
-            this.team_one_panel.Controls.Add(this.coun_down_panel);
             this.team_one_panel.Controls.Add(this.label1);
-            this.team_one_panel.Location = new System.Drawing.Point(1, 1);
+            this.team_one_panel.Location = new System.Drawing.Point(1, 0);
             this.team_one_panel.Name = "team_one_panel";
-            this.team_one_panel.Size = new System.Drawing.Size(1018, 1101);
+            this.team_one_panel.Size = new System.Drawing.Size(1018, 1102);
             this.team_one_panel.TabIndex = 1;
-            // 
-            // team_two_panel
-            // 
-            this.team_two_panel.BackColor = System.Drawing.Color.GreenYellow;
-            this.team_two_panel.Controls.Add(this.label2);
-            this.team_two_panel.Font = new System.Drawing.Font("Microsoft Sans Serif", 200F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.team_two_panel.Location = new System.Drawing.Point(1019, 1);
-            this.team_two_panel.Name = "team_two_panel";
-            this.team_two_panel.Size = new System.Drawing.Size(1135, 1169);
-            this.team_two_panel.TabIndex = 2;
-            this.team_two_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.team_two_panel_Paint);
             // 
             // label1
             // 
@@ -84,6 +72,17 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Player\r\nOne\r\nReady";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // team_two_panel
+            // 
+            this.team_two_panel.BackColor = System.Drawing.Color.GreenYellow;
+            this.team_two_panel.Controls.Add(this.label2);
+            this.team_two_panel.Font = new System.Drawing.Font("Microsoft Sans Serif", 200F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.team_two_panel.Location = new System.Drawing.Point(1019, 0);
+            this.team_two_panel.Name = "team_two_panel";
+            this.team_two_panel.Size = new System.Drawing.Size(1135, 1170);
+            this.team_two_panel.TabIndex = 2;
+            this.team_two_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.team_two_panel_Paint);
             // 
             // label2
             // 
@@ -99,11 +98,11 @@
             // 
             // coun_down_panel
             // 
-            this.coun_down_panel.BackColor = System.Drawing.Color.LightGreen;
+            this.coun_down_panel.BackColor = System.Drawing.Color.Transparent;
             this.coun_down_panel.Controls.Add(this.coun_down_lb);
-            this.coun_down_panel.Location = new System.Drawing.Point(255, 290);
+            this.coun_down_panel.Location = new System.Drawing.Point(187, 184);
             this.coun_down_panel.Name = "coun_down_panel";
-            this.coun_down_panel.Size = new System.Drawing.Size(520, 376);
+            this.coun_down_panel.Size = new System.Drawing.Size(1441, 683);
             this.coun_down_panel.TabIndex = 1;
             this.coun_down_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint_1);
             // 
@@ -111,11 +110,13 @@
             // 
             this.coun_down_lb.AutoSize = true;
             this.coun_down_lb.BackColor = System.Drawing.Color.Transparent;
-            this.coun_down_lb.Font = new System.Drawing.Font("Rockwell", 150F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.coun_down_lb.Location = new System.Drawing.Point(121, 26);
+            this.coun_down_lb.Font = new System.Drawing.Font("Rockwell", 300F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.coun_down_lb.Location = new System.Drawing.Point(374, 44);
             this.coun_down_lb.Name = "coun_down_lb";
-            this.coun_down_lb.Size = new System.Drawing.Size(0, 304);
+            this.coun_down_lb.Size = new System.Drawing.Size(495, 587);
             this.coun_down_lb.TabIndex = 0;
+            this.coun_down_lb.Text = "  ";
+            this.coun_down_lb.Click += new System.EventHandler(this.coun_down_lb_Click);
             // 
             // home
             // 
@@ -126,6 +127,7 @@
             this.Controls.Add(this.team_two_panel);
             this.Controls.Add(this.team_one_panel);
             this.Controls.Add(this.watch_lb);
+            this.Controls.Add(this.coun_down_panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
