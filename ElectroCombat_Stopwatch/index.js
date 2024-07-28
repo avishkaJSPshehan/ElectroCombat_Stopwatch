@@ -2,6 +2,8 @@ const leftMessage = document.getElementById("left");
 const rightMessage = document.getElementById("right");
 const countdownElement = document.getElementById("countdown");
 const display = document.getElementById("display");
+const logoDiv=document.getElementById("logo_div")
+
 
 let timer = null;
 let startTime = 0;
@@ -133,4 +135,13 @@ document.addEventListener("keydown", (event) => {
         event.preventDefault();
         resetStopwatch();
     }
+    else if (event.code === "KeyX") {
+        event.preventDefault();
+        logoPopup()
+    }
 });
+
+
+function logoPopup(){
+logoDiv.style.visibility="visible";
+}
