@@ -2,6 +2,8 @@ const leftMessage = document.getElementById("left");
 const rightMessage = document.getElementById("right");
 const countdownElement = document.getElementById("countdown");
 const display = document.getElementById("display");
+const logoDiv=document.getElementById("logo")
+const visibleForms = document.querySelectorAll('.visible');
 
 let timer = null;
 let startTime = 0;
@@ -109,6 +111,11 @@ function startCountdown() {
 }
 
 document.addEventListener("keydown", (event) => {
+   
+    if (document.activeElement.tagName === 'INPUT') {
+        return; 
+    }
+
     if (event.code === "KeyQ") {
         event.preventDefault();
         leftMessage.textContent = "Player One Ready";
@@ -125,12 +132,30 @@ document.addEventListener("keydown", (event) => {
             rightMessage.style.display = "none";
             startCountdown();
         } else if (isPaused) {
-            startStopwatch(); // Resume stopwatch if it's paused
+            startStopwatch(); 
         } else if (isRunning) {
-            pauseStopwatch(); // Pause stopwatch if it's running
+            pauseStopwatch(); 
         }
     } else if (event.code === "KeyR") {
         event.preventDefault();
         resetStopwatch();
+    } else if (event.code === "KeyX") {
+        event.preventDefault();
+        logoPopup();
+    } else if (event.code === "KeyC") {
+        event.preventDefault();
+        teamFormView();
     }
 });
+
+function logoPopup(){
+logoDiv.style.visibility="visible";
+logoDiv.style. animation= 'popup 4s forwards';
+}
+
+function teamFormView(){
+    visibleForms.forEach(form => {
+        form.style.visibility = "visible";
+        form.style. animation= 'popup 3s forwards';
+    });
+}

@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ElectroCombat_Stopwatch</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-    <div id="container">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background">
+    <div id="logo_div">
+     
+        <div class="form_one  visible">
+            <input type="text" class="input">
+        </div>
+        <img src="logo.png" id="logo" />
+        <div class="form_two visible">
+            <input type="text"  class="input">
+        </div>
+    
+    </div>
+    <button id="team_name_bttn" class="visible">Start Combat</button>
+  </div>
+    <!-- <div id="container">
         <div id="left" class="message"></div>
         <div id="right" class="message"></div>
         <div id="countdown"></div>
         <div id="display">00:00</div>
-    </div>
+    </div> -->
 
     <script src="index.js"></script>
-
-</body>
+  </body>
 </html>
