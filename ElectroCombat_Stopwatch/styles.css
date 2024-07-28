@@ -1,5 +1,7 @@
 /* Import the new gaming font from Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+
 
 /* General styles for the body */
 body {
@@ -96,9 +98,9 @@ body {
 
 /* /////////////////////////////////////////////// */
 
-#logo_div {
+.background{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   background-image: linear-gradient(
     to right,
@@ -110,14 +112,23 @@ body {
   );
   width: 100%;
   height: 100vh;
-  visibility: hidden;
+}
+
+#logo_div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 90vh;
+ 
 }
 
 #logo {
+  visibility: hidden;
   width: 50%;
   height: 100%;
   object-fit: cover;
-  animation: popup 4s forwards;
+ 
 }
 
 /* Keyframes for pop-up effect */
@@ -130,4 +141,45 @@ body {
     transform: scale(1);
     opacity: 1;
   }
+}
+
+
+.input{
+width: 300px;
+height: 40px;
+outline: none;
+border-radius: 5px;
+border: 0;
+font-size: 28px;
+font-weight: 500;
+font-family: "Russo One", sans-serif;
+padding: 0px 5px 0px 5px;
+margin: 0px 30px ;
+
+}
+
+#team_name_bttn{
+  width: 300px;
+  height: 50px;
+  background: linear-gradient(145deg, #ff007f, #660066);
+  border: 2px solid #999;
+  border-radius: 8px;
+  color: #ffffff; 
+  font-size: 16px;
+  text-transform: uppercase; 
+  cursor: pointer; 
+  outline: none; 
+  font-family: "Russo One", sans-serif;
+}
+
+
+#team_name_bttn:hover {
+  background: linear-gradient(145deg, #ff4d99, #990099); /* Lighter gradient on hover */
+}
+
+
+
+
+.visible{
+  visibility: hidden;
 }
