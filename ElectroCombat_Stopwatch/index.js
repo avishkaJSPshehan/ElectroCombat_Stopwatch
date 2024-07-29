@@ -1,6 +1,8 @@
 const leftMessage = document.getElementById("left");
 const rightMessage = document.getElementById("right");
 const countdownElement = document.getElementById("countdown");
+const rightidelCountdownElement = document.getElementById("right-idel-countdown");
+const leftidelCountdownElement = document.getElementById("left-idel-countdown");
 const display = document.getElementById("display");
 const logoDiv = document.getElementById("logo");
 const visibleForms = document.querySelectorAll(".visible");
@@ -21,6 +23,12 @@ let time = startingMinutes * 60; // Initial countdown time in seconds
 let isRunning = false;
 let isPaused = false;
 let countdownActive = false;
+
+// Variables to track idle countdowns
+let leftIdleCountdownInterval = null;
+let rightIdleCountdownInterval = null;
+let leftIdleActive = false;
+let rightIdleActive = false;
 
 // Function to start the stopwatch
 function startStopwatch() {
@@ -77,6 +85,8 @@ function resetStopwatch() {
   countdownElement.style.display = "none";
   leftMessage.style.display = "none";
   rightMessage.style.display = "none";
+  leftidelCountdownElement.style.display = "none";
+  rightidelCountdownElement.style.display = "none";
 
   // Reset container background color
   document.getElementById("container").style.backgroundColor = "white";
@@ -84,6 +94,8 @@ function resetStopwatch() {
 
   // Reset countdown state
   countdownActive = false;
+  leftIdleActive = false;
+  rightIdleActive = false;
 }
 
 // Function to update the stopwatch display
@@ -139,6 +151,92 @@ function startCountdown() {
   }, 1000);
 }
 
+// Function for left idle countdown
+function leftidelCountdown() {
+  let count = 30;
+  leftIdleActive = true;
+  leftIdleCountdownInterval = setInterval(() => {
+    leftidelCountdownElement.textContent = count;
+    leftidelCountdownElement.style.display = "block";
+    leftidelCountdownElement.style.backgroundColor = "orange";
+    leftidelCountdownElement.innerHTML = `<center><p>Team One: ${team_one_h1.textContent} <br/> idel</p><p>${count}</p></center>`;
+
+    count--;
+    if (count <= 0) {
+      clearInterval(leftIdleCountdownInterval);
+      leftidelCountdownElement.style.display = "none";
+      leftIdleActive = false;
+
+      // Show confirmation dialog
+      const userConfirmed = window.confirm("Idle time has ended. Confirm to proceed or Cancel to abort.");
+      if (userConfirmed) {
+        startStopwatch(); // Proceed with starting the stopwatch
+      } else {
+        // Handle cancellation (e.g., reset or stop the stopwatch)
+        resetStopwatch();
+      }
+    }
+  }, 1000);
+}
+
+// Function for right idle countdown
+function rightidelCountdown() {
+  let count = 30;
+  rightIdleActive = true;
+  rightIdleCountdownInterval = setInterval(() => {
+    rightidelCountdownElement.textContent = count;
+    rightidelCountdownElement.style.display = "block";
+    rightidelCountdownElement.style.backgroundColor = "orange";
+    rightidelCountdownElement.innerHTML = `<center><p>Team Two: ${team_two_h1.textContent} <br/> idel</p><p>${count}</p></center>`;
+
+    count--;
+    if (count <= 0) {
+      clearInterval(rightIdleCountdownInterval);
+      rightidelCountdownElement.style.display = "none";
+      rightIdleActive = false;
+
+      // Show confirmation dialog
+      const userConfirmed = window.confirm("Idle time has ended. Confirm to proceed or Cancel to abort.");
+      if (userConfirmed) {
+        startStopwatch(); // Proceed with starting the stopwatch
+      } else {
+        // Handle cancellation (e.g., reset or stop the stopwatch)
+        resetStopwatch();
+      }
+    }
+  }, 1000);
+}
+
+// Function to handle left player idle
+function leftplayerIdel() {
+  if (leftIdleActive) {
+    // Stop the idle countdown if it's active
+    clearInterval(leftIdleCountdownInterval);
+    leftIdleCountdownElement.style.display = "none";
+    leftIdleActive = false;
+  } else {
+    leftMessage.textContent = "idel";
+    leftMessage.style.display = "block";
+    leftMessage.style.backgroundColor = "orange";
+    leftidelCountdown();
+  }
+}
+
+// Function to handle right player idle
+function rightplayerIdel() {
+  if (rightIdleActive) {
+    // Stop the idle countdown if it's active
+    clearInterval(rightIdleCountdownInterval);
+    rightIdleCountdownElement.style.display = "none";
+    rightIdleActive = false;
+  } else {
+    rightMessage.textContent = "idel";
+    rightMessage.style.display = "block";
+    rightMessage.style.backgroundColor = "orange";
+    rightidelCountdown();
+  }
+}
+
 // Event listener for keydown events
 document.addEventListener("keydown", (event) => {
   if (document.activeElement.tagName === "INPUT") {
@@ -189,11 +287,18 @@ document.addEventListener("keydown", (event) => {
     event.preventDefault();
     teamFormView();
   }
-
   // Key V: Show counter container
   else if (event.code === "KeyV") {
     event.preventDefault();
     showCounter();
+  }
+  // Key A: Handle left player idle
+  else if (event.code === "KeyA") {
+    leftplayerIdel();
+  }
+  // Key L: Handle right player idle
+  else if (event.code === "KeyL") {
+    rightplayerIdel();
   }
 });
 

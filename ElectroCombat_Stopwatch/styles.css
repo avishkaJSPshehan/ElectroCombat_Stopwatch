@@ -67,6 +67,36 @@ body {
   padding-left: 100px;
 }
 
+#right-idel-countdown{
+  font-size: 4em; /* Very large font size */
+  font-weight: bold;
+  color: rgb(252, 0, 0);
+  position: absolute;
+  top: 10%;
+  left: 72%;
+  transform: translate(-50%, -50%);
+  display: none; /* Hidden by default */
+  z-index: 10; /* Ensure it is above other elements */
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+  font-family: "Russo One", sans-serif; /* Apply new gaming font */
+  animation: pulse 1s infinite;
+}
+
+#left-idel-countdown{
+  font-size: 4em; /* Very large font size */
+  font-weight: bold;
+  color: rgb(252, 0, 0);
+  position: absolute;
+  top: 10%;
+  left: 28%;
+  transform: translate(-50%, -50%);
+  display: none; /* Hidden by default */
+  z-index: 10; /* Ensure it is above other elements */
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+  font-family: "Russo One", sans-serif; /* Apply new gaming font */
+  animation: pulse 1s infinite;
+}
+
 /* Countdown styles */
 #countdown {
   font-size: 30em; /* Very large font size */
