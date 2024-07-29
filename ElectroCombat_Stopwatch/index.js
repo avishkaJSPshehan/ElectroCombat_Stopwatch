@@ -135,17 +135,20 @@ document.addEventListener("keydown", (event) => {
   // Key Q: Show "Player One Ready" message
   if (event.code === "KeyQ") {
     event.preventDefault();
-    leftMessage.textContent = "Player One Ready";
+    leftMessage.textContent = "Ready";
     leftMessage.style.display = "block";
   }
   // Key P: Show "Player Two Ready" message
   else if (event.code === "KeyP") {
     event.preventDefault();
-    rightMessage.textContent = "Player Two Ready";
+    rightMessage.textContent = "Ready";
     rightMessage.style.display = "block";
   }
   // Spacebar: Start countdown, pause, or resume stopwatch
   else if (event.code === "Space") {
+    background.style.display = "none";
+    vs_canteiner.style.display = "none";
+    counterContainer.style.display = "flex";
     event.preventDefault();
     if (!countdownActive) {
       countdownActive = true;
