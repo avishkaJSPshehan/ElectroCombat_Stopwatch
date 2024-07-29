@@ -1,4 +1,3 @@
-// Get DOM elements
 const leftMessage = document.getElementById("left");
 const rightMessage = document.getElementById("right");
 const countdownElement = document.getElementById("countdown");
@@ -13,9 +12,12 @@ const counterContainer = document.querySelector("#container");
 const team_two_h1 = document.getElementById("team_two_name");
 const vs_canteiner = document.querySelector(".vs_canteiner");
 const background = document.querySelector(".background");
+
 let timer = null;
 let startTime = 0;
 let elapsedTime = 0;
+const startingMinutes = 3;
+let time = startingMinutes * 60; // Initial countdown time in seconds
 let isRunning = false;
 let isPaused = false;
 let countdownActive = false;
@@ -24,7 +26,7 @@ let countdownActive = false;
 function startStopwatch() {
   if (!isRunning) {
     startTime = Date.now() - elapsedTime;
-    timer = setInterval(updateStopwatch, 10);
+    timer = setInterval(updateStopwatch, 1000);
     isRunning = true;
     display.style.display = "block";
     document.getElementById("container").style.backgroundColor = "green";
@@ -32,7 +34,7 @@ function startStopwatch() {
     openFullscreen();
   } else if (isPaused) {
     startTime = Date.now() - elapsedTime;
-    timer = setInterval(updateStopwatch, 10);
+    timer = setInterval(updateStopwatch, 1000);
     isPaused = false;
     document.getElementById("container").style.backgroundColor = "green";
     document.body.style.backgroundColor = "green";
@@ -61,37 +63,48 @@ function stopStopwatch() {
   }
 }
 
-// Function to reset the stopwatch
+// Function to reset the stopwatch and countdown
 function resetStopwatch() {
   clearInterval(timer);
   elapsedTime = 0;
   isRunning = false;
   isPaused = false;
+  time = startingMinutes * 60; // Reset the countdown time
+
+  // Reset display
   display.textContent = "00:00";
   display.style.display = "none";
   countdownElement.style.display = "none";
   leftMessage.style.display = "none";
   rightMessage.style.display = "none";
+
+  // Reset container background color
   document.getElementById("container").style.backgroundColor = "white";
   document.body.style.backgroundColor = "white";
+
+  // Reset countdown state
   countdownActive = false;
 }
 
 // Function to update the stopwatch display
 function updateStopwatch() {
-  const currentTime = Date.now();
-  elapsedTime = currentTime - startTime;
+  let minutes = Math.floor(time / 60);
+  let seconds = time % 60;
 
-  let minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
-  let seconds = Math.floor((elapsedTime / 1000) % 60);
-
-  minutes = String(minutes).padStart(2, "0");
-  seconds = String(seconds).padStart(2, "0");
+  seconds = seconds < 10 ? '0' + seconds : seconds;
+  minutes = minutes < 4 ? '0' + minutes : minutes;
 
   display.textContent = `${minutes}:${seconds}`;
+  time--;
+
+  // Change background color to orange during the last 10 seconds
+  if (time <= 10 && time >= 0) {
+    document.getElementById("container").style.backgroundColor = "orange";
+    document.body.style.backgroundColor = "orange";
+  }
 
   // Stop the stopwatch after 3 minutes
-  if (minutes === "03") {
+  if (minutes === "00" && seconds === "00") {
     stopStopwatch();
   }
 }
@@ -210,7 +223,6 @@ team_two.onchange = (e) => {
 // Event listener for the "Start Combat" button
 team_name_bttn.addEventListener("click", () => {
   // Hide the background with fade-out animation
-
   background.classList.add("fade-out");
 
   // After the fade-out animation ends, hide the background div and show vs_canteiner with fade-in animation
