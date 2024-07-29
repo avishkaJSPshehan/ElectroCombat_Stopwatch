@@ -41,6 +41,7 @@ body {
   height: 100%;
   padding-top: 50px;
   box-sizing: border-box;
+  z-index: -1;
 }
 
 /* Left message styles */

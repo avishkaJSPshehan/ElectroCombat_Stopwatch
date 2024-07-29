@@ -108,6 +108,30 @@ function startCountdown() {
     }, 1000);
 }
 
+function idelCountdown() {
+    let count = 30;
+    countdownElement.textContent = count;
+    countdownElement.style.display = "block";
+
+    const countdownInterval = setInterval(() => {
+        count--;
+        if (count > 0) {
+            countdownElement.textContent = count;
+        } else {
+            clearInterval(countdownInterval);
+            countdownElement.style.display = "none";
+            startStopwatch();
+        }
+    }, 1000);
+}
+
+function playerIdel(){
+    leftMessage.textContent = "idel";
+    leftMessage.style.display = "block";
+    leftMessage.style.backgroundColor ="orange";
+    idelCountdown();
+}
+
 document.addEventListener("keydown", (event) => {
     if (event.code === "KeyQ") {
         event.preventDefault();
@@ -132,5 +156,8 @@ document.addEventListener("keydown", (event) => {
     } else if (event.code === "KeyR") {
         event.preventDefault();
         resetStopwatch();
+    }
+    else if (event.code ==="KeyA"){
+        playerIdel();
     }
 });
