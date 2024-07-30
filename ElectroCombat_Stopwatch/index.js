@@ -159,10 +159,18 @@ function leftidelCountdown() {
     leftidelCountdownElement.textContent = count;
     leftidelCountdownElement.style.display = "block";
     leftidelCountdownElement.style.backgroundColor = "orange";
-    leftidelCountdownElement.innerHTML = `<center><p>Team One: ${team_one_h1.textContent} <br/> idel</p><p>${count}</p></center>`;
+    leftidelCountdownElement.innerHTML = `
+      <center>
+        <p>
+          ${team_one_h1.textContent}: idel
+        </p>
+        <p>
+          ${count}
+        </p>
+      </center>`;
 
     count--;
-    if (count <= 0) {
+    if (count <= -2) {
       clearInterval(leftIdleCountdownInterval);
       leftidelCountdownElement.style.display = "none";
       leftIdleActive = false;
@@ -187,10 +195,18 @@ function rightidelCountdown() {
     rightidelCountdownElement.textContent = count;
     rightidelCountdownElement.style.display = "block";
     rightidelCountdownElement.style.backgroundColor = "orange";
-    rightidelCountdownElement.innerHTML = `<center><p>Team Two: ${team_two_h1.textContent} <br/> idel</p><p>${count}</p></center>`;
+    rightidelCountdownElement.innerHTML = `
+      <center>
+        <p>
+          ${team_two_h1.textContent}: idel
+        </p>
+        <p>
+          ${count}
+        </p>
+      </center>`;
 
     count--;
-    if (count <= 0) {
+    if (count <= -2) {
       clearInterval(rightIdleCountdownInterval);
       rightidelCountdownElement.style.display = "none";
       rightIdleActive = false;
