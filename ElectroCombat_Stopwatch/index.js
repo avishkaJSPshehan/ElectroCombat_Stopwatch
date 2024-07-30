@@ -253,6 +253,105 @@ function rightplayerIdel() {
   }
 }
 
+function leftNotMovingCountdown() {
+  let count = 60;
+  leftIdleActive = true;
+  leftIdleCountdownInterval = setInterval(() => {
+    leftidelCountdownElement.textContent = count;
+    leftidelCountdownElement.style.display = "block";
+    leftidelCountdownElement.style.backgroundColor = "orange";
+    leftidelCountdownElement.innerHTML = `
+      <center>
+        <p>
+          ${team_one_h1.textContent}: Not Moving
+        </p>
+        <p>
+          ${count}
+        </p>
+      </center>`;
+
+    count--;
+    if (count <= -2) {
+      clearInterval(leftIdleCountdownInterval);
+      leftidelCountdownElement.style.display = "none";
+      leftIdleActive = false;
+
+      // Show confirmation dialog
+      const userConfirmed = window.confirm("Not Moving time has ended. Confirm to proceed or Cancel to abort.");
+      if (userConfirmed) {
+        startStopwatch(); // Proceed with starting the stopwatch
+      } else {
+        // Handle cancellation (e.g., reset or stop the stopwatch)
+        resetStopwatch();
+      }
+    }
+  }, 1000);
+}
+
+function rightNotMovingCountdown() {
+  let count = 60;
+  rightIdleActive = true;
+  rightIdleCountdownInterval = setInterval(() => {
+    rightidelCountdownElement.textContent = count;
+    rightidelCountdownElement.style.display = "block";
+    rightidelCountdownElement.style.backgroundColor = "orange";
+    rightidelCountdownElement.innerHTML = `
+      <center>
+        <p>
+          ${team_two_h1.textContent}: Not Moving
+        </p>
+        <p>
+          ${count}
+        </p>
+      </center>`;
+
+    count--;
+    if (count <= -2) {
+      clearInterval(rightIdleCountdownInterval);
+      rightidelCountdownElement.style.display = "none";
+      rightIdleActive = false;
+
+      // Show confirmation dialog
+      const userConfirmed = window.confirm("Not Moving time has ended. Confirm to proceed or Cancel to abort.");
+      if (userConfirmed) {
+        startStopwatch(); // Proceed with starting the stopwatch
+      } else {
+        // Handle cancellation (e.g., reset or stop the stopwatch)
+        resetStopwatch();
+      }
+    }
+  }, 1000);
+}
+
+// Function to handle left player idle
+function leftplayerNotMoving() {
+  if (leftIdleActive) {
+    // Stop the idle countdown if it's active
+    clearInterval(leftIdleCountdownInterval);
+    leftIdleCountdownElement.style.display = "none";
+    leftIdleActive = false;
+  } else {
+    leftMessage.textContent = "idel";
+    leftMessage.style.display = "block";
+    leftMessage.style.backgroundColor = "orange";
+    leftNotMovingCountdown();
+  }
+}
+
+function rightplayerNotMoving() {
+  if (rightIdleActive) {
+    // Stop the idle countdown if it's active
+    clearInterval(rightIdleCountdownInterval);
+    rightIdleCountdownElement.style.display = "none";
+    rightIdleActive = false;
+  } else {
+    rightMessage.textContent = "idel";
+    rightMessage.style.display = "block";
+    rightMessage.style.backgroundColor = "orange";
+    rightNotMovingCountdown();
+  }
+}
+
 // Event listener for keydown events
 document.addEventListener("keydown", (event) => {
   if (document.activeElement.tagName === "INPUT") {
@@ -315,6 +414,14 @@ document.addEventListener("keydown", (event) => {
   // Key L: Handle right player idle
   else if (event.code === "KeyL") {
     rightplayerIdel();
+  }
+
+  else if (event.code === "KeyS") {
+    leftplayerNotMoving();
+  }
+
+  else if (event.code === "KeyK") {
+    rightplayerNotMoving();
   }
 });
 
