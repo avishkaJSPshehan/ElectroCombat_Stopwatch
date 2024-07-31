@@ -453,11 +453,11 @@ team_name_bttn.addEventListener("click", () => {
   // Hide the background with fade-out animation
   background.classList.add("fade-out");
 
-  // After the fade-out animation ends, hide the background div and show vs_canteiner with fade-in animation
+
   background.addEventListener(
     "animationend",
     () => {
-      background.style.display = "none"; // Ensure it is removed from the layout
+      background.style.display = "none"; 
       const vsCanteiner = document.querySelector(".vs_canteiner");
       vsCanteiner.style.display = "flex"; // Show VS container
       vsCanteiner.classList.add("fade-in");
