@@ -59,6 +59,8 @@ function pauseStopwatch() {
   }
 }
 
+
+
 // Function to stop the stopwatch
 function stopStopwatch() {
   if (isRunning) {
@@ -178,10 +180,10 @@ function leftidelCountdown() {
       // Show confirmation dialog
       const userConfirmed = window.confirm("Idle time has ended. Confirm to proceed or Cancel to abort.");
       if (userConfirmed) {
-        startStopwatch(); // Proceed with starting the stopwatch
+        stopStopwatch(); // Proceed with starting the stopwatch
       } else {
         // Handle cancellation (e.g., reset or stop the stopwatch)
-        resetStopwatch();
+        startStopwatch();
       }
     }
   }, 1000);
@@ -214,10 +216,10 @@ function rightidelCountdown() {
       // Show confirmation dialog
       const userConfirmed = window.confirm("Idle time has ended. Confirm to proceed or Cancel to abort.");
       if (userConfirmed) {
-        startStopwatch(); // Proceed with starting the stopwatch
+        stopStopwatch(); // Proceed with starting the stopwatch
       } else {
         // Handle cancellation (e.g., reset or stop the stopwatch)
-        resetStopwatch();
+        startStopwatch();
       }
     }
   }, 1000);
@@ -279,13 +281,26 @@ function leftPlayerStackCountdown() {
       // Show confirmation dialog
       const userConfirmed = window.confirm("Stack time has ended. Confirm to proceed or Cancel to abort.");
       if (userConfirmed) {
-        startStopwatch(); // Proceed with starting the stopwatch
+        stopStopwatch(); // Proceed with starting the stopwatch
       } else {
         // Handle cancellation (e.g., reset or stop the stopwatch)
-        resetStopwatch();
+        startStopwatch();
       }
     }
+    
   }, 1000);
+}
+
+function hideAnyleftCountDown(){
+  clearInterval(leftIdleCountdownInterval);
+  leftidelCountdownElement.style.display = "none";
+  leftIdleActive = false;
+}
+
+function hideAnyrightCountDown(){
+  clearInterval(rightIdleCountdownInterval);
+  rightidelCountdownElement.style.display = "none";
+  rightIdleActive = false;
 }
 
 function leftplayerStack() {
@@ -328,10 +343,10 @@ function rightPlayerStackCountdown() {
       // Show confirmation dialog
       const userConfirmed = window.confirm("Stack time has ended. Confirm to proceed or Cancel to abort.");
       if (userConfirmed) {
-        startStopwatch(); // Proceed with starting the stopwatch
+        stopStopwatch(); // Proceed with starting the stopwatch
       } else {
         // Handle cancellation (e.g., reset or stop the stopwatch)
-        resetStopwatch();
+        startStopwatch();
       }
     }
   }, 1000);
@@ -412,10 +427,10 @@ function rightNotMovingCountdown() {
       // Show confirmation dialog
       const userConfirmed = window.confirm("Not Moving time has ended. Confirm to proceed or Cancel to abort.");
       if (userConfirmed) {
-        startStopwatch(); // Proceed with starting the stopwatch
+        stopStopwatch(); // Proceed with starting the stopwatch
       } else {
         // Handle cancellation (e.g., reset or stop the stopwatch)
-        resetStopwatch();
+        startStopwatch();
       }
     }
   }, 1000);
@@ -528,6 +543,14 @@ document.addEventListener("keydown", (event) => {
 
   else if (event.code === "KeyW") {
     rightplayerStack();
+  }
+
+  else if (event.code === "KeyD") {
+    hideAnyleftCountDown();
+  }
+
+  else if (event.code === "KeyJ") {
+    hideAnyrightCountDown();
   }
   
 });
