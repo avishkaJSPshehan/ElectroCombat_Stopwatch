@@ -87,7 +87,51 @@ function matchTerminate(){
   
 }
 
+function leftPlayerSurrender() {
 
+  const userConfirmed = window.confirm("Are You Sure You Wont To Surrender");
+      if (userConfirmed) {
+        if (isRunning) {
+          clearInterval(timer);
+          elapsedTime = Date.now() - startTime;
+          isRunning = false;
+          isPaused = false;
+          document.getElementById("container").style.backgroundColor = "red";
+          document.body.style.backgroundColor = "red";
+          countdownMessage.textContent = `${team_one_h1.textContent} Surrender`;
+          countdownMessage.style.fontFamily = "LCDMono2";
+          countdownMessage.style.fontSize = "xx-large";
+        } // Proceed with starting the stopwatch
+      } else {
+        // Handle cancellation (e.g., reset or stop the stopwatch)
+        startStopwatch();
+      }
+
+  
+}
+
+function rightPlayerSurrender() {
+
+  const userConfirmed = window.confirm("Are You Sure You Wont To Surrender");
+      if (userConfirmed) {
+        if (isRunning) {
+          clearInterval(timer);
+          elapsedTime = Date.now() - startTime;
+          isRunning = false;
+          isPaused = false;
+          document.getElementById("container").style.backgroundColor = "red";
+          document.body.style.backgroundColor = "red";
+          countdownMessage.textContent = `${team_two_h1.textContent} Surrender`;
+          countdownMessage.style.fontFamily = "LCDMono2";
+          countdownMessage.style.fontSize = "xx-large";
+        } // Proceed with starting the stopwatch
+      } else {
+        // Handle cancellation (e.g., reset or stop the stopwatch)
+        startStopwatch();
+      }
+
+  
+}
 // Function to stop the stopwatch
 function stopStopwatch() {
   if (isRunning) {
@@ -97,6 +141,9 @@ function stopStopwatch() {
     isPaused = false;
     document.getElementById("container").style.backgroundColor = "red";
     document.body.style.backgroundColor = "red";
+    countdownMessage.textContent = "Match Ended";
+    countdownMessage.style.fontFamily = "LCDMono2";
+    countdownMessage.style.fontSize = "xx-large";
   }
 }
 
@@ -587,11 +634,11 @@ document.addEventListener("keydown", (event) => {
   }
 
   else if (event.code === "KeyC") {
-    hideAnyrightCountDown(); // player 1 Surrender
+    leftPlayerSurrender(); // player 1 Surrender
   }
 
   else if (event.code === "KeyB") {
-    hideAnyrightCountDown(); // Player 2 Surrender
+    rightPlayerSurrender(); // Player 2 Surrender
   }
   
   else if (event.code === "KeyT") {
