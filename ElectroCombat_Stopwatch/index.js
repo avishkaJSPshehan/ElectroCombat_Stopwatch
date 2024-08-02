@@ -1,7 +1,9 @@
 const leftMessage = document.getElementById("left");
 const rightMessage = document.getElementById("right");
 const countdownElement = document.getElementById("countdown");
-const rightidelCountdownElement = document.getElementById("right-idel-countdown");
+const rightidelCountdownElement = document.getElementById(
+  "right-idel-countdown"
+);
 const leftidelCountdownElement = document.getElementById("left-idel-countdown");
 const display = document.getElementById("display");
 const logoDiv = document.getElementById("logo");
@@ -69,68 +71,63 @@ function pauseStopwatch() {
   }
 }
 
-function matchTerminate(){
-  const userConfirmed = window.confirm("Are You Sure you Wont to Terminate This Match");
-      if (userConfirmed) {
-        if (isRunning && !isPaused) {
-          clearInterval(timer);
-          isPaused = true;
-          document.getElementById("container").style.backgroundColor = "red";
-          document.body.style.backgroundColor = "red";
-          countdownMessage.textContent = "Match Terminated";
-          countdownMessage.style.fontFamily = "LCDMono2";
-          countdownMessage.style.fontSize = "xx-large";
-        }
-      } else {
-        startStopwatch();
-      }
-  
+function matchTerminate() {
+  const userConfirmed = window.confirm(
+    "Are You Sure you Wont to Terminate This Match"
+  );
+  if (userConfirmed) {
+    if (isRunning && !isPaused) {
+      clearInterval(timer);
+      isPaused = true;
+      document.getElementById("container").style.backgroundColor = "red";
+      document.body.style.backgroundColor = "red";
+      countdownMessage.textContent = "Match Terminated";
+      countdownMessage.style.fontFamily = "LCDMono2";
+      countdownMessage.style.fontSize = "xx-large";
+    }
+  } else {
+    startStopwatch();
+  }
 }
 
 function leftPlayerSurrender() {
-
   const userConfirmed = window.confirm("Are You Sure You Wont To Surrender");
-      if (userConfirmed) {
-        if (isRunning) {
-          clearInterval(timer);
-          elapsedTime = Date.now() - startTime;
-          isRunning = false;
-          isPaused = false;
-          document.getElementById("container").style.backgroundColor = "red";
-          document.body.style.backgroundColor = "red";
-          countdownMessage.textContent = `${team_one_h1.textContent} Surrender`;
-          countdownMessage.style.fontFamily = "LCDMono2";
-          countdownMessage.style.fontSize = "xx-large";
-        } // Proceed with starting the stopwatch
-      } else {
-        // Handle cancellation (e.g., reset or stop the stopwatch)
-        startStopwatch();
-      }
-
-  
+  if (userConfirmed) {
+    if (isRunning) {
+      clearInterval(timer);
+      elapsedTime = Date.now() - startTime;
+      isRunning = false;
+      isPaused = false;
+      document.getElementById("container").style.backgroundColor = "red";
+      document.body.style.backgroundColor = "red";
+      countdownMessage.textContent = `${team_one_h1.textContent} Surrendered`;
+      countdownMessage.style.fontFamily = "LCDMono2";
+      countdownMessage.style.fontSize = "xx-large";
+    } // Proceed with starting the stopwatch
+  } else {
+    // Handle cancellation (e.g., reset or stop the stopwatch)
+    startStopwatch();
+  }
 }
 
 function rightPlayerSurrender() {
-
   const userConfirmed = window.confirm("Are You Sure You Wont To Surrender");
-      if (userConfirmed) {
-        if (isRunning) {
-          clearInterval(timer);
-          elapsedTime = Date.now() - startTime;
-          isRunning = false;
-          isPaused = false;
-          document.getElementById("container").style.backgroundColor = "red";
-          document.body.style.backgroundColor = "red";
-          countdownMessage.textContent = `${team_two_h1.textContent} Surrender`;
-          countdownMessage.style.fontFamily = "LCDMono2";
-          countdownMessage.style.fontSize = "xx-large";
-        } // Proceed with starting the stopwatch
-      } else {
-        // Handle cancellation (e.g., reset or stop the stopwatch)
-        startStopwatch();
-      }
-
-  
+  if (userConfirmed) {
+    if (isRunning) {
+      clearInterval(timer);
+      elapsedTime = Date.now() - startTime;
+      isRunning = false;
+      isPaused = false;
+      document.getElementById("container").style.backgroundColor = "red";
+      document.body.style.backgroundColor = "red";
+      countdownMessage.textContent = `${team_two_h1.textContent} Surrendered`;
+      countdownMessage.style.fontFamily = "LCDMono2";
+      countdownMessage.style.fontSize = "xx-large";
+    } // Proceed with starting the stopwatch
+  } else {
+    // Handle cancellation (e.g., reset or stop the stopwatch)
+    startStopwatch();
+  }
 }
 // Function to stop the stopwatch
 function stopStopwatch() {
@@ -180,8 +177,8 @@ function updateStopwatch() {
   minutes = Math.floor(time / 60);
   seconds = time % 60;
 
-  seconds = seconds < 10 ? '0' + seconds : seconds;
-  minutes = minutes < 4 ? '0' + minutes : minutes;
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+  minutes = minutes < 4 ? "0" + minutes : minutes;
 
   display.textContent = `${minutes}:${seconds}`;
   time--;
@@ -229,21 +226,24 @@ function startCountdown() {
 }
 
 // Function for left idle countdown
+
+let remainingTime; // To store the remaining time when paused
+
 function leftidelCountdown() {
-  let count = 30-(180 - time);
+  let count = 60 - (180 - time);
+  remainingTime = count; // Initialize remaining time
   leftIdleActive = true;
+
   leftIdleCountdownInterval = setInterval(() => {
+    if (isPaused) return; // If paused, skip updating
+
     leftidelCountdownElement.textContent = count;
     leftidelCountdownElement.style.display = "block";
     leftidelCountdownElement.style.backgroundColor = "orange";
     leftidelCountdownElement.innerHTML = `
       <center>
-        <p>
-          ${team_one_h1.textContent}: idel
-        </p>
-        <p>
-          ${count}
-        </p>
+        <p>${team_one_h1.textContent}: Idle</p>
+        <p>${count}</p>
       </center>`;
 
     count--;
@@ -253,7 +253,9 @@ function leftidelCountdown() {
       leftIdleActive = false;
 
       // Show confirmation dialog
-      const userConfirmed = window.confirm("Idle time has ended. Confirm to proceed or Cancel to abort.");
+      const userConfirmed = window.confirm(
+        "Idle time has ended. Confirm to proceed or Cancel to abort."
+      );
       if (userConfirmed) {
         stopStopwatch(); // Proceed with starting the stopwatch
       } else {
@@ -264,22 +266,41 @@ function leftidelCountdown() {
   }, 1000);
 }
 
+function pauseLeftIdleCountdown() {
+  if (!leftIdleActive || isPaused) return; // No action if not active or already paused
+
+  clearInterval(leftIdleCountdownInterval);
+  isPaused = true;
+  remainingTime = parseInt(leftidelCountdownElement.textContent); // Update remaining time
+}
+
+function resumeLeftIdleCountdown() {
+  if (!leftIdleActive || !isPaused) return; // No action if not active or already running
+
+  isPaused = false;
+  leftidelCountdown();
+}
+
 // Function for right idle countdown
+
+let rightRemainingTime; // To store the remaining time when paused
+let rightIsPaused = false; // To check if the countdown is paused
+
 function rightidelCountdown() {
-  let count = 30-(180 - time);
+  let count = 60 - (180 - time);
   rightIdleActive = true;
+
   rightIdleCountdownInterval = setInterval(() => {
+    if (isPaused) return; // If paused, skip updating
+
+    rightRemainingTime = count; // Update remaining time
     rightidelCountdownElement.textContent = count;
     rightidelCountdownElement.style.display = "block";
     rightidelCountdownElement.style.backgroundColor = "orange";
     rightidelCountdownElement.innerHTML = `
       <center>
-        <p>
-          ${team_two_h1.textContent}: idel
-        </p>
-        <p>
-          ${count}
-        </p>
+        <p>${team_two_h1.textContent}: Idle</p>
+        <p>${count}</p>
       </center>`;
 
     count--;
@@ -289,7 +310,9 @@ function rightidelCountdown() {
       rightIdleActive = false;
 
       // Show confirmation dialog
-      const userConfirmed = window.confirm("Idle time has ended. Confirm to proceed or Cancel to abort.");
+      const userConfirmed = window.confirm(
+        "Idle time has ended. Confirm to proceed or Cancel to abort."
+      );
       if (userConfirmed) {
         stopStopwatch(); // Proceed with starting the stopwatch
       } else {
@@ -298,6 +321,21 @@ function rightidelCountdown() {
       }
     }
   }, 1000);
+}
+
+function pauseRightIdleCountdown() {
+  if (!rightIdleActive || isPaused) return; // No action if not active or already paused
+
+  clearInterval(rightIdleCountdownInterval);
+  isPaused = true;
+  rightRemainingTime = parseInt(rightidelCountdownElement.textContent); // Update remaining time
+}
+
+function resumeRightIdleCountdown() {
+  if (!rightIdleActive || !isPaused) return; // No action if not active or already running
+
+  isPaused = false;
+  rightidelCountdown(); // Restart the countdown from the last remaining time
 }
 
 // Function to handle left player idle
@@ -330,21 +368,23 @@ function rightplayerIdel() {
   }
 }
 
+let leftRemainingTime; // To store the remaining time when paused
+
 function leftPlayerStackCountdown() {
   let count = 60;
   leftIdleActive = true;
+
   leftIdleCountdownInterval = setInterval(() => {
+    if (isPaused) return; // If paused, skip updating
+
+    leftRemainingTime = count; // Update remaining time
     leftidelCountdownElement.textContent = count;
     leftidelCountdownElement.style.display = "block";
     leftidelCountdownElement.style.backgroundColor = "orange";
     leftidelCountdownElement.innerHTML = `
       <center>
-        <p>
-          ${team_one_h1.textContent}: Stack
-        </p>
-        <p>
-          ${count}
-        </p>
+        <p>${team_one_h1.textContent}: Stucked</p>
+        <p>${count}</p>
       </center>`;
 
     count--;
@@ -354,7 +394,9 @@ function leftPlayerStackCountdown() {
       leftIdleActive = false;
 
       // Show confirmation dialog
-      const userConfirmed = window.confirm("Stack time has ended. Confirm to proceed or Cancel to abort.");
+      const userConfirmed = window.confirm(
+        "Stuck time has ended. Confirm to proceed or Cancel to abort."
+      );
       if (userConfirmed) {
         stopStopwatch(); // Proceed with starting the stopwatch
       } else {
@@ -362,17 +404,31 @@ function leftPlayerStackCountdown() {
         startStopwatch();
       }
     }
-    
   }, 1000);
 }
 
-function hideAnyleftCountDown(){
+function pauseLeftPlayerStackCountdown() {
+  if (!leftIdleActive || isPaused) return; // No action if not active or already paused
+
+  clearInterval(leftIdleCountdownInterval);
+  isPaused = true;
+  leftRemainingTime = parseInt(leftidelCountdownElement.textContent); // Update remaining time
+}
+
+function resumeLeftPlayerStackCountdown() {
+  if (!leftIdleActive || !isPaused) return; // No action if not active or already running
+
+  isPaused = false;
+  leftPlayerStackCountdown(); // Restart the countdown from the last remaining time
+}
+
+function hideAnyleftCountDown() {
   clearInterval(leftIdleCountdownInterval);
   leftidelCountdownElement.style.display = "none";
   leftIdleActive = false;
 }
 
-function hideAnyrightCountDown(){
+function hideAnyrightCountDown() {
   clearInterval(rightIdleCountdownInterval);
   rightidelCountdownElement.style.display = "none";
   rightIdleActive = false;
@@ -393,30 +449,32 @@ function leftplayerStack() {
 }
 
 function rightPlayerStackCountdown() {
-  let count = 60;
-  leftIdleActive = true;
-  leftIdleCountdownInterval = setInterval(() => {
-    leftidelCountdownElement.textContent = count;
-    leftidelCountdownElement.style.display = "block";
-    leftidelCountdownElement.style.backgroundColor = "orange";
-    leftidelCountdownElement.innerHTML = `
+  let count =  60;
+  rightIdleActive = true;
+
+  rightIdleCountdownInterval = setInterval(() => {
+    if (isPaused) return; // If paused, skip updating
+
+    rightRemainingTime = count; // Update remaining time
+    rightidelCountdownElement.textContent = count;
+    rightidelCountdownElement.style.display = "block";
+    rightidelCountdownElement.style.backgroundColor = "orange";
+    rightidelCountdownElement.innerHTML = `
       <center>
-        <p>
-          ${team_one_h1.textContent}: Stack
-        </p>
-        <p>
-          ${count}
-        </p>
+        <p>${team_two_h1.textContent}: Stucked</p>
+        <p>${count}</p>
       </center>`;
 
     count--;
     if (count <= -2) {
-      clearInterval(leftIdleCountdownInterval);
-      leftidelCountdownElement.style.display = "none";
-      leftIdleActive = false;
+      clearInterval(rightIdleCountdownInterval);
+      rightidelCountdownElement.style.display = "none";
+      rightIdleActive = false;
 
       // Show confirmation dialog
-      const userConfirmed = window.confirm("Stack time has ended. Confirm to proceed or Cancel to abort.");
+      const userConfirmed = window.confirm(
+        "Stack time has ended. Confirm to proceed or Cancel to abort."
+      );
       if (userConfirmed) {
         stopStopwatch(); // Proceed with starting the stopwatch
       } else {
@@ -425,6 +483,21 @@ function rightPlayerStackCountdown() {
       }
     }
   }, 1000);
+}
+
+function pauseRightPlayerStackCountdown() {
+  if (!rightIdleActive || isPaused) return; // No action if not active or already paused
+
+  clearInterval(rightIdleCountdownInterval);
+  isPaused = true;
+  rightRemainingTime = parseInt(rightidelCountdownElement.textContent); // Update remaining time
+}
+
+function resumeRightPlayerStackCountdown() {
+  if (!rightIdleActive || !isPaused) return; // No action if not active or already running
+
+  isPaused = false;
+  rightPlayerStackCountdown(); // Restart the countdown from the last remaining time
 }
 
 function rightplayerStack() {
@@ -444,18 +517,18 @@ function rightplayerStack() {
 function leftNotMovingCountdown() {
   let count = 15;
   leftIdleActive = true;
+
   leftIdleCountdownInterval = setInterval(() => {
+    if (isPaused) return; // If paused, skip updating
+
+    leftRemainingTime = count; // Update remaining time
     leftidelCountdownElement.textContent = count;
     leftidelCountdownElement.style.display = "block";
     leftidelCountdownElement.style.backgroundColor = "orange";
     leftidelCountdownElement.innerHTML = `
       <center>
-        <p>
-          ${team_one_h1.textContent}: Not Moving
-        </p>
-        <p>
-          ${count}
-        </p>
+        <p>${team_one_h1.textContent}: Not Moving</p>
+        <p>${count}</p>
       </center>`;
 
     count--;
@@ -465,32 +538,49 @@ function leftNotMovingCountdown() {
       leftIdleActive = false;
 
       // Show confirmation dialog
-      const userConfirmed = window.confirm("Not Moving time has ended. Confirm to proceed or Cancel to abort.");
+      const userConfirmed = window.confirm(
+        "Not Moving time has ended. Confirm to proceed or Cancel to abort."
+      );
       if (userConfirmed) {
-        startStopwatch(); // Proceed with starting the stopwatch
+        stopStopwatch(); // Proceed with starting the stopwatch
       } else {
         // Handle cancellation (e.g., reset or stop the stopwatch)
-        resetStopwatch();
+        startStopwatch();
       }
     }
   }, 1000);
 }
 
+function pauseLeftNotMovingCountdown() {
+  if (!leftIdleActive || isPaused) return; // No action if not active or already paused
+
+  clearInterval(leftIdleCountdownInterval);
+  isPaused = true;
+  leftRemainingTime = parseInt(leftidelCountdownElement.textContent); // Update remaining time
+}
+
+function resumeLeftNotMovingCountdown() {
+  if (!leftIdleActive || !isPaused) return; // No action if not active or already running
+
+  isPaused = false;
+  leftNotMovingCountdown(); // Restart the countdown from the last remaining time
+}
+
 function rightNotMovingCountdown() {
   let count = 15;
   rightIdleActive = true;
+
   rightIdleCountdownInterval = setInterval(() => {
+    if (isPaused) return; // If paused, skip updating
+
+    rightRemainingTime = count; // Update remaining time
     rightidelCountdownElement.textContent = count;
     rightidelCountdownElement.style.display = "block";
     rightidelCountdownElement.style.backgroundColor = "orange";
     rightidelCountdownElement.innerHTML = `
       <center>
-        <p>
-          ${team_two_h1.textContent}: Not Moving
-        </p>
-        <p>
-          ${count}
-        </p>
+        <p>${team_two_h1.textContent}: Not Moving</p>
+        <p>${count}</p>
       </center>`;
 
     count--;
@@ -500,7 +590,9 @@ function rightNotMovingCountdown() {
       rightIdleActive = false;
 
       // Show confirmation dialog
-      const userConfirmed = window.confirm("Not Moving time has ended. Confirm to proceed or Cancel to abort.");
+      const userConfirmed = window.confirm(
+        "Not Moving time has ended. Confirm to proceed or Cancel to abort."
+      );
       if (userConfirmed) {
         stopStopwatch(); // Proceed with starting the stopwatch
       } else {
@@ -509,6 +601,21 @@ function rightNotMovingCountdown() {
       }
     }
   }, 1000);
+}
+
+function pauseRightNotMovingCountdown() {
+  if (!rightIdleActive || isPaused) return; // No action if not active or already paused
+
+  clearInterval(rightIdleCountdownInterval);
+  isPaused = true;
+  rightRemainingTime = parseInt(rightidelCountdownElement.textContent); // Update remaining time
+}
+
+function resumeRightNotMovingCountdown() {
+  if (!rightIdleActive || !isPaused) return; // No action if not active or already running
+
+  isPaused = false;
+  rightNotMovingCountdown(); // Restart the countdown from the last remaining time
 }
 
 // Function to handle left player idle
@@ -564,26 +671,24 @@ document.addEventListener("keydown", (event) => {
   }
   // Spacebar: Start countdown, pause, or resume stopwatch
   else if (event.code === "Space") {
-    if (isLeftPlayerReady && isRightPlayerReady){
+    if (isLeftPlayerReady && isRightPlayerReady) {
       background.style.display = "none";
       vs_canteiner.style.display = "none";
       counterContainer.style.display = "flex";
       event.preventDefault();
-    if (!countdownActive) {
-      countdownActive = true;
-      leftMessage.style.display = "none";
-      rightMessage.style.display = "none";
-      startCountdown();
-    } else if (isPaused) {
-      startStopwatch(); // Resume stopwatch
-    } else if (isRunning) {
-      pauseStopwatch(); // Pause stopwatch
-    }
-    }
-    else{
+      if (!countdownActive) {
+        countdownActive = true;
+        leftMessage.style.display = "none";
+        rightMessage.style.display = "none";
+        startCountdown();
+      } else if (isPaused) {
+        startStopwatch(); // Resume stopwatch
+      } else if (isRunning) {
+        pauseStopwatch(); // Pause stopwatch
+      }
+    } else {
       alert("Players are Not Ready Yet.");
     }
-    
   }
   // Key R: Reset the stopwatch
   else if (event.code === "KeyR") {
@@ -607,41 +712,23 @@ document.addEventListener("keydown", (event) => {
   // Key L: Handle right player idle
   else if (event.code === "KeyJ") {
     rightplayerIdel();
-  }
-
-  else if (event.code === "KeyD") {
+  } else if (event.code === "KeyD") {
     leftplayerNotMoving();
-  }
-
-  else if (event.code === "KeyL") {
+  } else if (event.code === "KeyL") {
     rightplayerNotMoving();
-  }
-
-  else if (event.code === "KeyS") {
+  } else if (event.code === "KeyS") {
     leftplayerStack();
-  }
-
-  else if (event.code === "KeyK") {
+  } else if (event.code === "KeyK") {
     rightplayerStack();
-  }
-
-  else if (event.code === "KeyZ") {
+  } else if (event.code === "KeyZ") {
     hideAnyleftCountDown();
-  }
-
-  else if (event.code === "KeyM") {
+  } else if (event.code === "KeyM") {
     hideAnyrightCountDown();
-  }
-
-  else if (event.code === "KeyC") {
+  } else if (event.code === "KeyC") {
     leftPlayerSurrender(); // player 1 Surrender
-  }
-
-  else if (event.code === "KeyB") {
+  } else if (event.code === "KeyB") {
     rightPlayerSurrender(); // Player 2 Surrender
-  }
-  
-  else if (event.code === "KeyT") {
+  } else if (event.code === "KeyT") {
     matchTerminate(); // MatchTerminated
   }
 });
@@ -674,11 +761,10 @@ team_name_bttn.addEventListener("click", () => {
   // Hide the background with fade-out animation
   background.classList.add("fade-out");
 
-
   background.addEventListener(
     "animationend",
     () => {
-      background.style.display = "none"; 
+      background.style.display = "none";
       const vsCanteiner = document.querySelector(".vs_canteiner");
       vsCanteiner.style.display = "flex"; // Show VS container
       vsCanteiner.classList.add("fade-in");
@@ -694,4 +780,3 @@ team_name_bttn.addEventListener("click", () => {
   team_one.value = "";
   team_two.value = "";
 });
-
