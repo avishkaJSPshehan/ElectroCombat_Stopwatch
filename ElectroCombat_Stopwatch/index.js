@@ -14,6 +14,7 @@ const counterContainer = document.querySelector("#container");
 const team_two_h1 = document.getElementById("team_two_name");
 const vs_canteiner = document.querySelector(".vs_canteiner");
 const background = document.querySelector(".background");
+const countdownMessage = document.getElementById("countdownMessage");
 
 let timer = null;
 let startTime = 0;
@@ -23,6 +24,11 @@ let time = startingMinutes * 60; // Initial countdown time in seconds
 let isRunning = false;
 let isPaused = false;
 let countdownActive = false;
+let isLeftPlayerReady = false;
+let isRightPlayerReady = false;
+
+let minutes;
+let seconds;
 
 // Variables to track idle countdowns
 let leftIdleCountdownInterval = null;
@@ -32,19 +38,20 @@ let rightIdleActive = false;
 
 // Function to start the stopwatch
 function startStopwatch() {
+  countdownMessage.textContent = "";
   if (!isRunning) {
     startTime = Date.now() - elapsedTime;
     timer = setInterval(updateStopwatch, 1000);
     isRunning = true;
     display.style.display = "block";
-    document.getElementById("container").style.backgroundColor = "green";
+    document.getElementById("container").style.backgroundColor = "#4feb34";
     document.body.style.backgroundColor = "green";
     openFullscreen();
   } else if (isPaused) {
     startTime = Date.now() - elapsedTime;
     timer = setInterval(updateStopwatch, 1000);
     isPaused = false;
-    document.getElementById("container").style.backgroundColor = "green";
+    document.getElementById("container").style.backgroundColor = "#4feb34";
     document.body.style.backgroundColor = "green";
   }
 }
@@ -56,9 +63,29 @@ function pauseStopwatch() {
     isPaused = true;
     document.getElementById("container").style.backgroundColor = "yellow";
     document.body.style.backgroundColor = "yellow";
+    countdownMessage.textContent = "Paused";
+    countdownMessage.style.fontFamily = "LCDMono2";
+    countdownMessage.style.fontSize = "xx-large";
   }
 }
 
+function matchTerminate(){
+  const userConfirmed = window.confirm("Are You Sure you Wont to Terminate This Match");
+      if (userConfirmed) {
+        if (isRunning && !isPaused) {
+          clearInterval(timer);
+          isPaused = true;
+          document.getElementById("container").style.backgroundColor = "red";
+          document.body.style.backgroundColor = "red";
+          countdownMessage.textContent = "Match Terminated";
+          countdownMessage.style.fontFamily = "LCDMono2";
+          countdownMessage.style.fontSize = "xx-large";
+        }
+      } else {
+        startStopwatch();
+      }
+  
+}
 
 
 // Function to stop the stopwatch
@@ -89,6 +116,7 @@ function resetStopwatch() {
   rightMessage.style.display = "none";
   leftidelCountdownElement.style.display = "none";
   rightidelCountdownElement.style.display = "none";
+  countdownMessage.style.display = "none";
 
   // Reset container background color
   document.getElementById("container").style.backgroundColor = "white";
@@ -102,8 +130,8 @@ function resetStopwatch() {
 
 // Function to update the stopwatch display
 function updateStopwatch() {
-  let minutes = Math.floor(time / 60);
-  let seconds = time % 60;
+  minutes = Math.floor(time / 60);
+  seconds = time % 60;
 
   seconds = seconds < 10 ? '0' + seconds : seconds;
   minutes = minutes < 4 ? '0' + minutes : minutes;
@@ -155,7 +183,7 @@ function startCountdown() {
 
 // Function for left idle countdown
 function leftidelCountdown() {
-  let count = 30;
+  let count = 30-(180 - time);
   leftIdleActive = true;
   leftIdleCountdownInterval = setInterval(() => {
     leftidelCountdownElement.textContent = count;
@@ -191,7 +219,7 @@ function leftidelCountdown() {
 
 // Function for right idle countdown
 function rightidelCountdown() {
-  let count = 30;
+  let count = 30-(180 - time);
   rightIdleActive = true;
   rightIdleCountdownInterval = setInterval(() => {
     rightidelCountdownElement.textContent = count;
@@ -471,24 +499,29 @@ document.addEventListener("keydown", (event) => {
     return; // Skip if input field is focused
   }
 
+  console.log(event.code);
+
   // Key Q: Show "Player One Ready" message
   if (event.code === "KeyQ") {
+    isLeftPlayerReady = true;
     event.preventDefault();
     leftMessage.textContent = "Ready";
     leftMessage.style.display = "block";
   }
   // Key P: Show "Player Two Ready" message
   else if (event.code === "KeyP") {
+    isRightPlayerReady = true;
     event.preventDefault();
     rightMessage.textContent = "Ready";
     rightMessage.style.display = "block";
   }
   // Spacebar: Start countdown, pause, or resume stopwatch
   else if (event.code === "Space") {
-    background.style.display = "none";
-    vs_canteiner.style.display = "none";
-    counterContainer.style.display = "flex";
-    event.preventDefault();
+    if (isLeftPlayerReady && isRightPlayerReady){
+      background.style.display = "none";
+      vs_canteiner.style.display = "none";
+      counterContainer.style.display = "flex";
+      event.preventDefault();
     if (!countdownActive) {
       countdownActive = true;
       leftMessage.style.display = "none";
@@ -499,6 +532,11 @@ document.addEventListener("keydown", (event) => {
     } else if (isRunning) {
       pauseStopwatch(); // Pause stopwatch
     }
+    }
+    else{
+      alert("Players are Not Ready Yet.");
+    }
+    
   }
   // Key R: Reset the stopwatch
   else if (event.code === "KeyR") {
@@ -506,53 +544,59 @@ document.addEventListener("keydown", (event) => {
     resetStopwatch();
   }
   // Key X: Show logo with pop-up animation
-  else if (event.code === "KeyX") {
+  else if (event.code === "Digit9") {
     event.preventDefault();
     logoPopup();
   }
   // Key C: Show team name input forms
-  else if (event.code === "KeyC") {
+  else if (event.code === "Digit0") {
     event.preventDefault();
     teamFormView();
-  }
-  // Key V: Show counter container
-  else if (event.code === "KeyV") {
-    event.preventDefault();
-    showCounter();
   }
   // Key A: Handle left player idle
   else if (event.code === "KeyA") {
     leftplayerIdel();
   }
   // Key L: Handle right player idle
-  else if (event.code === "KeyL") {
+  else if (event.code === "KeyJ") {
     rightplayerIdel();
   }
 
-  else if (event.code === "KeyS") {
+  else if (event.code === "KeyD") {
     leftplayerNotMoving();
   }
 
-  else if (event.code === "KeyK") {
+  else if (event.code === "KeyL") {
     rightplayerNotMoving();
   }
 
-  else if (event.code === "KeyW") {
+  else if (event.code === "KeyS") {
     leftplayerStack();
   }
 
-  else if (event.code === "KeyW") {
+  else if (event.code === "KeyK") {
     rightplayerStack();
   }
 
-  else if (event.code === "KeyD") {
+  else if (event.code === "KeyZ") {
     hideAnyleftCountDown();
   }
 
-  else if (event.code === "KeyJ") {
+  else if (event.code === "KeyM") {
     hideAnyrightCountDown();
   }
+
+  else if (event.code === "KeyC") {
+    hideAnyrightCountDown(); // player 1 Surrender
+  }
+
+  else if (event.code === "KeyB") {
+    hideAnyrightCountDown(); // Player 2 Surrender
+  }
   
+  else if (event.code === "KeyT") {
+    matchTerminate(); // MatchTerminated
+  }
 });
 
 // Function to show logo with a pop-up animation
@@ -604,9 +648,3 @@ team_name_bttn.addEventListener("click", () => {
   team_two.value = "";
 });
 
-// Function to show counter container
-function showCounter() {
-  background.style.display = "none";
-  vs_canteiner.style.display = "none";
-  counterContainer.style.display = "flex";
-}
