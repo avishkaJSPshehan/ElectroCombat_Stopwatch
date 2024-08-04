@@ -717,7 +717,7 @@ document.addEventListener("keydown", (event) => {
   } else if (event.code === "KeyL") {
     rightplayerNotMoving();
   } else if (event.code === "KeyS") {
-    leftplayerStack();
+    //leftplayerStack();
   } else if (event.code === "KeyK") {
     rightplayerStack();
   } else if (event.code === "KeyZ") {
