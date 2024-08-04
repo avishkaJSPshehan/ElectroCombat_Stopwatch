@@ -23,7 +23,7 @@ Welcome to the **ElectroCombat Countdown** project! This application is designed
 
 2. **Navigate to the Project Directory**:
    ```bash
-   cd electrocombat-Countdown
+   cd electrocombat-Stopwatch
    ```
 
 3. **Open the `index.html` file in your browser** 🌐:
@@ -47,24 +47,24 @@ Welcome to the **ElectroCombat Countdown** project! This application is designed
 ## Screenshots 📸
 
 ### Main Screen
-![Main Screen](Assets\start.jpeg)
+![Main Screen](Assets/start.jpeg)
 *Main screen of the ElectroCombat Stopwatch.*
 
-### Countdown Timer
-![Countdown Timer](Assets\running.jpeg)
-*Countdown timer in action.*
-
-### Match Terminated
-![Match Terminated](Assets\terminate.jpeg)
-*Match Terminated*
-
 ### Player Readiness
-![Player Readiness](Assets\vs.jpeg)
+![Player Readiness](Assets/vs.jpeg)
 *Player readiness messages.*
 
+### Countdown Timer
+![Countdown Timer](Assets/running.jpeg)
+*Countdown timer in action.*
+
 ### Match Ended
-![Match Ended](Assets\ended.jpeg)
+![Match Ended](Assets/ended.jpeg)
 *Match Ended*
+
+### Match Terminated
+![Match Terminated](Assets/terminate.jpeg)
+*Match Terminated*
 
 ## Contributing 🤝
 
