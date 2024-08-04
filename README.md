@@ -2,6 +2,10 @@
 ---
 
 # ElectroCombat Countdown ⚔️⏱️
+<p align="center">
+  <img src="ElectroCombat_Stopwatch/logo.png" width="500" alt="Logo">
+</p>
+
 
 Welcome to the **ElectroCombat Countdown** project! This application is designed to manage the timing and status of an ElectroCombat Robo Battle. It includes features for handling match timing, player readiness, idle times, and more. 
 
